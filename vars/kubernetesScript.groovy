@@ -16,6 +16,7 @@ environment {
 		stage("POLL SCM"){
       		agent{label 'kub'}
 			steps {
+				println('step 1')
 				checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[credentialsId: "$gitCredId", url: "$gitRepo"]]])
 			}
 		}	
