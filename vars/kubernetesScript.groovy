@@ -14,14 +14,14 @@ environment {
 	
 	stages {
 		stage("POLL SCM"){
-      		agent{label 'docker'}
+      		agent{label 'kub'}
 			steps {
 				checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[credentialsId: "$gitCredId", url: "$gitRepo"]]])
 			}
 		}	
 					
 		stage('BUILD IMAGE') {
-       			agent{label 'docker'}
+       			agent{label 'kub'}
 			steps { 
 				 script { 
 					 dockerimage = dockerImage = docker.build registry + ":$dockerTag" 
@@ -30,7 +30,7 @@ environment {
 		}
 					
 		stage('PUSH HUB') { 
-       			agent{label 'docker'}
+       			agent{label 'kub'}
 			steps { 
 				script {
 					docker.withRegistry( '', registryCredential ) { 
@@ -41,7 +41,7 @@ environment {
 		}
 					
 		stage('DEPLOY IMAGE') {
-      			agent{label 'kubernetes'}
+      			agent{label 'kub'}
 			steps {
 				sh 'kubectl set image deploy webapp-deployment nodejs="$registry:$dockerTag" --record'
 			}
