@@ -29,21 +29,21 @@ environment {
         } 
         
         stage('BUILD IMAGE') {
-		agent{label 'docker'}
+		agent{label 'kub'}
             		steps {
                 	sh 'docker build -t $registry:$dockerTag .'             
             		}
         }
         
         stage('PUSH HUB') { 
-		agent{label 'docker'}
+		agent{label 'kub'}
             		steps {
 			            sh 'docker push $registry:$dockerTag'                   	
                 	}    
         }
         
         stage('DEPLOY IMAGE') {
-		agent{label 'kubernetes'}
+		agent{label 'kub'}
 		          steps {
 			            sh 'kubectl set image deploy $deployment $containerName="$registry:$dockerTag" --record'
 		          }
