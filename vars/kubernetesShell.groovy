@@ -19,8 +19,9 @@ environment {
 		agent{label 'kub'}
             		steps {
 			println('before checkout statement')
+			["git", "clone", "https://github.com/jfrogdev/project-examples.git"].execute()
 			//checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[credentialsId: "$gitCredId", url: "$gitRepo"]]])
-                	checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[ url: "$gitRepo"]]]) 
+                	//checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[ url: "$gitRepo"]]]) 
 			println('after checkout statement')
 			//	println([ 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], url: "$gitRepo"]]])
             		}
