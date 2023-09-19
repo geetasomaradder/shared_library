@@ -19,7 +19,7 @@ environment {
 		agent{label 'node-tomcat'}
             		steps {
 			println('before checkout statement')
-		        sh 'rm -rf shared_library'
+		        sh 'rm -rf nodejs-k8s'
 			sh 'git clone --single-branch --branch main https://github.com/geetasomaradder/nodejs-k8s.git'
 			
 			//checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[credentialsId: "$gitCredId", url: "$gitRepo"]]])
