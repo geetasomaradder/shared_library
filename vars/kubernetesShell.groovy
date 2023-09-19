@@ -16,7 +16,7 @@ environment {
 
     stages {
         stage("POLL SCM"){
-		agent{label 'docker'}
+		agent{label 'kub'}
             		steps {
 			//checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[credentialsId: "$gitCredId", url: "$gitRepo"]]])
                 	checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[ url: "$gitRepo"]]]) 
