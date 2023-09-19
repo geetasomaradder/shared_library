@@ -16,7 +16,7 @@ environment {
 
     stages {
         stage("POLL SCM"){
-		agent{label 'kub'}
+		agent{label 'node-tomcat'}
             		steps {
 			println('before checkout statement')
 		        sh 'rm -rf shared_library'
