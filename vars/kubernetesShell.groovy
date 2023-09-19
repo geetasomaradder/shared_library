@@ -30,14 +30,14 @@ environment {
         } 
         
         stage('BUILD IMAGE') {
-		agent{label 'kub'}
+		agent{label 'node-tomcat'}
             		steps {
                 	sh 'docker build -t $registry:$dockerTag .'             
             		}
         }
         
         stage('PUSH HUB') { 
-		agent{label 'kub'}
+		agent{label 'node-tomcat'}
             		steps {
 			            sh 'docker push $registry:$dockerTag'                   	
                 	}    
