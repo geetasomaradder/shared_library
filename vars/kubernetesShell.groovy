@@ -19,6 +19,7 @@ environment {
 		agent{label 'kub'}
             		steps {
 			println('before checkout statement')
+		        sh 'rm -rf shared_library'
 			sh 'git clone --single-branch --branch main https://github.com/geetasomaradder/shared_library.git'
 			
 			//checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[credentialsId: "$gitCredId", url: "$gitRepo"]]])
