@@ -19,7 +19,8 @@ environment {
 		agent{label 'kub'}
             		steps {
 			println('before checkout statement')
-			["git", "clone", "https://github.com/jfrogdev/project-examples.git"].execute()
+			sh 'git clone --single-branch --branch main https://github.com/geetasomaradder/shared_library.git
+			
 			//checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[credentialsId: "$gitCredId", url: "$gitRepo"]]])
                 	//checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[ url: "$gitRepo"]]]) 
 			println('after checkout statement')
